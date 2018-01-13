@@ -1,7 +1,7 @@
 /*
   Angel Odiel Treviño Villanueva
   A01336559
-  Tarea:  Fecha:  Materia:
+  Tarea: 2 Fecha: 13 de Enero Materia: Diseño de Algoritmos
 */
 
 #include <iostream>

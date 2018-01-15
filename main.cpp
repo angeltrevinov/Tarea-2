@@ -9,25 +9,20 @@
 using namespace std;
 
 int BinarySearchTree(string &digitos, int min, int max){
-  int med = (max - min) / 2;
-  if(digitos.empty())
-    return digitos.length();
-  else if(digitos[med] != digitos[med+1] && med+1 <= digitos.length()-1 ){//si se encuentra una pareja a la derecha
-    digitos.erase(med, 2);
-    BinarySearchTree(digitos, min, digitos.length()-1);
-  }else if(digitos[med] != digitos[med-1] && med-1 >= 0 ){//si se encuentra una pareja a la izquierda
-      digitos.erase(med-1, 2);
-      BinarySearchTree(digitos, min, digitos.length()-1);
+  int unos = 0, ceros = 0, sobrantes;
+  for(int i = 0; i<digitos.length(); i++){
+    if(digitos[i] == '1')
+      unos++;
+    else if(digitos[i]== '0')
+      ceros++;
   }
-//si se tiene que mover a los lados
-  if((bool)digitos.find("1") != (bool)digitos.find("0")){
-    return digitos.length(); //salir si el string tiene los mismos digitos
-  }else if(digitos[med] == digitos[med+1]){//por si no hay pareja a la derecha
-    BinarySearchTree(digitos, med, digitos.length()-1);
-  }else if(digitos[med] == digitos[med-1]){//por si no hay pareja a la izquierda (se sale del arreglo)
-    BinarySearchTree(digitos, 0, med);
-  }
-  return digitos.length();
+
+  sobrantes = unos-ceros;
+  if(sobrantes < 0)
+      return sobrantes*1;
+  else
+      return sobrantes;
+
 }
 
 

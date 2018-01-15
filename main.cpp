@@ -10,7 +10,7 @@ using namespace std;
 
 int BinarySearchTree(string &digitos, int min, int max){
   int med = (max - min) / 2;
-  if(!digitos.length())
+  if(digitos.empty())
     return digitos.length();
   else if(digitos[med] != digitos[med+1] && med+1 <= digitos.length()-1 ){//si se encuentra una pareja a la derecha
     digitos.erase(med, 2);
@@ -18,12 +18,16 @@ int BinarySearchTree(string &digitos, int min, int max){
   }else if(digitos[med] != digitos[med-1] && med-1 >= 0 ){//si se encuentra una pareja a la izquierda
       digitos.erase(med-1, 2);
       BinarySearchTree(digitos, min, digitos.length()-1);
+  }
+//si se tiene que mover a los lados
+  if((bool)digitos.find("1") != (bool)digitos.find("0")){
+    return digitos.length(); //salir si el string tiene los mismos digitos
   }else if(digitos[med] == digitos[med+1]){//por si no hay pareja a la derecha
-    BinarySearchTree(digitos, med+1, digitos.length()-1);
+    BinarySearchTree(digitos, med, digitos.length()-1);
   }else if(digitos[med] == digitos[med-1]){//por si no hay pareja a la izquierda (se sale del arreglo)
     BinarySearchTree(digitos, 0, med);
   }
-    return digitos.length();
+  return digitos.length();
 }
 
 
@@ -35,8 +39,8 @@ int main(){
   cin >> length;
   cin >> digitos;
 
-  cout << BinarySearchTree(digitos, min, length-1) << endl;
-  cout << digitos << endl;
+  cout << BinarySearchTree(digitos, min, length) << endl;
+  //cout << digitos << endl;
 
   return 0;
 }

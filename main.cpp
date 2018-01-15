@@ -9,7 +9,7 @@
 using namespace std;
 
 int BinarySearchTree(string &digitos, int min, int max){
-  int unos = 0, ceros = 0, sobrantes;
+  int unos = 0, ceros = 0;
   for(int i = 0; i<digitos.length(); i++){
     if(digitos[i] == '1')
       unos++;
@@ -17,11 +17,7 @@ int BinarySearchTree(string &digitos, int min, int max){
       ceros++;
   }
 
-  sobrantes = unos-ceros;
-  if(sobrantes < 0)
-      return sobrantes*1;
-  else
-      return sobrantes;
+  return abs(unos-ceros);
 
 }
 
